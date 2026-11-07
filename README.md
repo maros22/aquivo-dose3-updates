@@ -1,6 +1,6 @@
-# Aquivo Dose 3 · signed firmware 1.3.0
+# Aquivo Dose 3 · signed firmware 1.3.1
 
-Seven offline interface languages: Slovak, Czech, Hungarian, Polish, English, German and French. Automatic browser language and manual selection on all device pages. Home Assistant card 1.3.0 has the same languages with editor/YAML selection.
+Fixes the Dose 3 card footer: visible card version and a larger device web link with its current IP, opened in the same window. Seven offline interface languages: Slovak, Czech, Hungarian, Polish, English, German and French. Automatic browser language and manual selection on all device pages. Home Assistant card 1.3.1 has the same languages with editor/YAML selection.
 
 - Firmware: [releases](https://github.com/maros22/aquivo-dose3-updates/releases)
 - HASS/HACS card and installation guide: [aquivo-dose3-card](https://github.com/maros22/aquivo-dose3-card)
