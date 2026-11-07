@@ -1,23 +1,25 @@
-# Aquivo Dose 3 — aktualizácie
+# Aquivo Dose 3 · signed firmware 1.3.0
 
-Verejná distribúcia hotového firmvéru pre Aquivo Dose 3 / NET4U-FERT3-ZB, ESP32-C6. Zdrojový kód firmvéru nie je súčasťou tohto repozitára.
+Seven offline interface languages: Slovak, Czech, Hungarian, Polish, English, German and French. Automatic browser language and manual selection on all device pages. Home Assistant card 1.3.0 has the same languages with editor/YAML selection.
 
-## Aktualizácia zo zariadenia
+- Firmware: [releases](https://github.com/maros22/aquivo-dose3-updates/releases)
+- HASS/HACS card and installation guide: [aquivo-dose3-card](https://github.com/maros22/aquivo-dose3-card)
+- `latest.json`: public signed metadata used by devices. No customer GitHub account or expiring token is required.
 
-Od verzie 1.2.0 otvor web dávkovača → Nové verzie firmvéru → Skontrolovať novú verziu. Zariadenie kontroluje vydania aj automaticky každých 6 hodín. Novšiu verziu nainštaluj po potvrdení v SERVICE pri zastavených pumpách. Po aktualizácii zostane SERVICE; kalibrácie, plány, názvy, Wi-Fi a Zigbee sa zachovajú.
+Update from the device web interface in SERVICE with every pump stopped. The updater verifies the manufacturer’s ECDSA-P256 signature, model, version, size and SHA256. For manual Wi-Fi OTA select the matching `.bin` and `.manifest.json`. This is an application image, not a USB/full-flash image. Firmware remains in SERVICE after update; settings, calibration, volumes, schedules and Zigbee pairing are retained. Check the result before enabling AUTO. Language changes never send pump commands. Schedule time zone remains Europe/Bratislava.
 
-Žiadny GitHub účet ani obnovovanie kľúča nie je potrebné. Kontrola potrebuje Wi-Fi, internet a overený čas. Dávkovanie nie je závislé od dostupnosti GitHubu.
+SK: Aktualizácia v SERVICE so zastavenými pumpami; vyber zodpovedajúci .bin a .manifest.json. Jazyk vyber hore na webe.
 
-## Ručná aktualizácia
+CS: Aktualizuj v SERVICE se zastavenými čerpadly; vyber odpovídající .bin a .manifest.json. Jazyk vyber nahoře na webu.
 
-Vo vydaní stiahni aplikačný `Aquivo-Dose-3-OTA-X.Y.Z.bin` a zodpovedajúci `Aquivo-Dose-3-OTA-X.Y.Z.manifest.json`. Na webe vyber oba súbory a nahraj v SERVICE. Nepoužívaj bootloader ani celý obraz flash. Počas aktualizácie nevypínaj napájanie.
+HU: Frissíts SERVICE módban, leállított szivattyúkkal; válaszd a megfelelő .bin és .manifest.json fájlt. A nyelv a weboldal tetején állítható.
 
-## Overovanie
+PL: Aktualizuj w SERVICE przy zatrzymanych pompach; wybierz pasujące pliki .bin i .manifest.json. Język wybierz na górze strony.
 
-Manifest obsahuje podpis ECDSA-P256/SHA256 pre model, verziu, veľkosť a SHA256 celého firmvéru. Zariadenie používa verejný kľúč výrobcu pevne vložený do aplikácie a pri neplatnom podpise alebo poškodenom prenose nový firmvér neaktivuje. Súkromný podpisový kľúč sa nikdy nedistribuuje.
+EN: Update in SERVICE with pumps stopped; select the matching .bin and .manifest.json. Choose the language at the top of the page.
 
-Ide o ochranu pravosti OTA aktualizácií. Samotný podpis nebráni kopírovaniu firmvéru a nenahrádza hardvérový Secure Boot ani ochranu pred priamym prepisom flash cez USB.
+DE: In SERVICE bei gestoppten Pumpen aktualisieren; passende .bin und .manifest.json wählen. Sprache oben auf der Seite auswählen.
 
-## Home Assistant
+FR: Mettez à jour en SERVICE avec les pompes arrêtées ; choisissez les fichiers .bin et .manifest.json correspondants. Choisissez la langue en haut de la page.
 
-Karta a inštalácia cez HACS: https://github.com/maros22/aquivo-dose3-card . Kartu a slovenský návod možno stiahnuť aj priamo z webu dávkovača v sekcii Karta pre Home Assistant.
+Source code, signing keys, private flash backups and credentials are not included in this public distribution.
