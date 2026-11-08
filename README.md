@@ -1,6 +1,8 @@
-# Aquivo Dose 3 · signed firmware 1.4.0
+# Aquivo Dose 3 · signed firmware 1.4.1
 
 Guided calibration for all three pumps, on the device web interface and the [Home Assistant/HACS card](https://github.com/maros22/aquivo-dose3-card). Seven offline languages: Slovak, Czech, Hungarian, Polish, English, German and French.
+
+Firmware 1.4.1 corrects the bundled card version label and the Wi-Fi setup footer. The calibration behavior and HASS card remain 1.4.0.
 
 ## Calibration
 
@@ -10,7 +12,7 @@ Calibration and priming liquid is collected outside the aquarium and is excluded
 
 ## Installation and updates
 
-Download the matching `.bin` and `.manifest.json` from [release v1.4.0](https://github.com/maros22/aquivo-dose3-updates/releases/tag/v1.4.0). This is an application image, not a USB/full-flash image. Use the device web updater in SERVICE with all pumps stopped. The updater verifies ECDSA-P256 signature, model, version, size and SHA256. Settings, saved calibration, volumes, schedules and Zigbee pairing are retained. Check the result before enabling AUTO.
+Download the matching `.bin` and `.manifest.json` from [release v1.4.1](https://github.com/maros22/aquivo-dose3-updates/releases/tag/v1.4.1). This is an application image, not a USB/full-flash image. Use the device web updater in SERVICE with all pumps stopped. The updater verifies ECDSA-P256 signature, model, version, size and SHA256. Settings, saved calibration, volumes, schedules and Zigbee pairing are retained. Check the result before enabling AUTO.
 
 The current model is `AQUIVO-DOSE3-ZB`, manufacturer Aquivo. After upgrading, interview and reconfigure the existing Dose 3 in Zigbee2MQTT to load its seven calibration entities. Keep the same device and entity IDs/history. Use card 1.4.0 with `custom:aquivo-dose3-card`; the installation guide covers migration and the `aquivo_dose3` helper. Load one JavaScript resource only.
 
