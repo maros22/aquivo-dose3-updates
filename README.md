@@ -1,27 +1,18 @@
-# Aquivo Dose 3 · signed firmware 1.4.1
+# Aquivo Dose 3 1.5.3
 
-Guided calibration for all three pumps, on the device web interface and the [Home Assistant/HACS card](https://github.com/maros22/aquivo-dose3-card). Seven offline languages: Slovak, Czech, Hungarian, Polish, English, German and French.
+Signed production firmware for AQUIVO-DOSE3-ZB (ESP32-C6, 4 MB).
 
-Firmware 1.4.1 corrects the bundled card version label and the Wi-Fi setup footer. The calibration behavior and HASS card remain 1.4.0.
+- Enabling AUTO catches up today's missed doses, including after calibration, schedule edits or a power interruption. Earlier days are not replayed. Calibration saves remain in SERVICE. Actual daily and total doses, existing calibration, refill amounts, plan and pairing are preserved.
+- Card 1.5.3 shows the scheduled part of today's dosing plus a red **+ X ml** for manual doses. The total entity includes both. Three standard Zigbee sensors expose device-counted manual doses, including doses requested from the device web interface; calibration/priming are excluded.
+- Every positive refill amount is the new 100% reservoir reference. Zero marks the container empty.
+- Calibration controls show cooldown and fresh device acknowledgements. No automatic retry of a physical command. Seven offline languages and the dynamic native external web link are retained.
+- The macOS card uses plain text time fields instead of the native picker that can crash the Companion app. Fields stay inside their columns.
+- Reporting configuration is held in RAM to avoid an SDK NVRAM failure. Source and destination binding tables each have 72 slots for 69 reporting pairs on 64 unchanged endpoints.
+- Fertilizer names can be edited on the device web interface. HASS name synchronization requires an optional external converter; it is not installed or enabled automatically.
+- The legacy state record stays compatible with rollback. Richer stored data is accepted only when its projection matches the current base; retired skip metadata is cleared without resetting actual dosing counters.
 
-## Calibration
+Update in SERVICE with stopped pumps, using the matching signed manifest. Do not erase NVS, partitions or Zigbee pairing. Refresh interview and reconfigure only Dose 3 after installation to discover its new standard sensors. Do not remove/re-pair the device.
 
-Use SERVICE and collect liquid outside the aquarium. Prime the tubing, release a little liquid and prepare an empty 5 ml measuring cylinder. Start with a 2-second measurement; stop before 5 ml. Increase duration only after checking actual flow (ideally collect 2–4 ml). Enter the collected volume, empty the cylinder, then run the 4 ml verification. Enter its actual measured volume. **Saving is allowed only after a completed verification of 3.9–4.1 ml (±2.5%).** A failed verification requires repeating calibration. Cancelling or rebooting preserves the previous saved flow.
+Card and HACS repository: https://github.com/maros22/aquivo-dose3-card
 
-Calibration and priming liquid is collected outside the aquarium and is excluded from aquarium daily/total doses. Reservoir use is estimated conservatively; check the actual remaining liquid after calibration. Never treat the initial time or a nominal pump specification as an accurate calibration.
-
-## Installation and updates
-
-Download the matching `.bin` and `.manifest.json` from [release v1.4.1](https://github.com/maros22/aquivo-dose3-updates/releases/tag/v1.4.1). This is an application image, not a USB/full-flash image. Use the device web updater in SERVICE with all pumps stopped. The updater verifies ECDSA-P256 signature, model, version, size and SHA256. Settings, saved calibration, volumes, schedules and Zigbee pairing are retained. Check the result before enabling AUTO.
-
-The current model is `AQUIVO-DOSE3-ZB`, manufacturer Aquivo. After upgrading, interview and reconfigure the existing Dose 3 in Zigbee2MQTT to load its seven calibration entities. Keep the same device and entity IDs/history. Use card 1.4.0 with `custom:aquivo-dose3-card`; the installation guide covers migration and the `aquivo_dose3` helper. Load one JavaScript resource only.
-
-Units from firmware older than 1.4.0 may require a one-time manufacturer-assisted migration to the Aquivo model/signature format; do not bypass signature checks or erase pairing/settings. Subsequent signed public updates require no customer GitHub account or expiring token. `latest.json` contains signed public metadata. Publishing an update does not start pumps.
-
-## Validation
-
-Controller, actual runtime output, signature/OTA policy, schema capacity, card, installer and seven-language DOM tests passed. On an ESP32-C6 board, all three disconnected output channels passed timed measurement, automatic verification cutoff, failed-save rejection, and successful-verification cancellation. The live HASS wizard and signed Wi-Fi OTA to the other slot were verified, preserving settings and SERVICE. Real liquid accuracy still requires measurement with each connected pump.
-
-The Zigbee calibration reports use RAM reporting configuration and standard ZCL reports, avoiding expansion of the SDK persistent reporting dataset. The original persisted reporting records and Zigbee storage layout are retained. OTA boot acceptance waits for Zigbee restoration.
-
-Source code, signing keys, private flash backups, targeted USB repair tools and credentials are not part of this public distribution.
+Only application binaries, public signed metadata and user documentation belong here. Source archives, flash backups, signing keys and board-specific recovery tools stay private.
